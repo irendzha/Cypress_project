@@ -41,6 +41,7 @@
 //   cy.get('*[class^="card"]'); // search by contains name
 // });
 
+//Comment
 it("Using Get with Find and Eq", () => {
   cy.visit("https://next.privat24.ua/deposit/open");
   cy.get("tbody").find("td").find("div").find("button").eq(0);
@@ -58,3 +59,5 @@ it.only("Using Get with Find and Eq", () => {
     .find("a")
     .eq(0);
 });
+
+//github_token: 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
