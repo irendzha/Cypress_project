@@ -1,0 +1,38 @@
+{
+  "task_id": "cache",
+  "status": "success",
+  "data": [
+    {
+      "state": "e",
+      "paymentTypeCode": "P24MBS",
+      "paymentType": "mobipay",
+      "moduleReference": "MBPA1443192980",
+      "moduleId": "P24A",
+      "error": { "code": "", "description": "" },
+      "details": "Поповнення телефону. На номер +380962616939",
+      "date": "17.03.2023 15:15:33",
+      "currency": "UAH",
+      "amount": 2.0,
+      "additionalData": { "phone": "+380962616939", "reference": "1443192980" },
+      "payer": {
+        "name": "",
+        "currency": "UAH",
+        "crf": "",
+        "commission": 2.0,
+        "bank": "",
+        "amount": 2.0,
+        "account": { "id": "", "number": "5457082223566162" }
+      },
+      "receiver": {
+        "name": "+380962616939",
+        "mfo": "",
+        "currency": "UAH",
+        "crf": "",
+        "commission": 0.0,
+        "bank": "",
+        "amount": 2.0,
+        "account": { "id": "", "number": "29241800002001" }
+      }
+    }
+  ]
+}

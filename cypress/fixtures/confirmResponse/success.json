@@ -1,0 +1,24 @@
+{
+  "task_id": "cache",
+  "data": {
+    "channel": "",
+    "confirm_error_code": "",
+    "dialogs": {},
+    "message": "",
+    "payments": [
+      {
+        "aCard": "4149499610151407",
+        "amount": "5.00",
+        "bName": "Kyivstar Ukraine",
+        "currency": "UAH",
+        "description": "Mobile payment. Phone number  +380962616939",
+        "link": "mobipay",
+        "ref": "P24A965832666D84732"
+      }
+    ],
+    "result": "accept",
+    "timestamp": "1679045272930"
+  },
+  "ref": "payments_dbe0d4b699bceabe861946d9d3bf69d9b5ddea18",
+  "status": "success"
+}

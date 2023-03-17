@@ -2,6 +2,7 @@
 import { mobileReplenishment } from "../support/pages/mobileReplenishment";
 import { transfers } from "../support/pages/transfers";
 import { basePage } from "../support/pages/basePage";
+import { archivePage } from "../support/pages/archive";
 
 Cypress.on("uncaught:exception", (err, runnable) => {
   // returning false here prevents Cypress from
@@ -9,20 +10,60 @@ Cypress.on("uncaught:exception", (err, runnable) => {
   return false;
 });
 
-it("Replenishment of Ukraine mobile phone number", () => {
+beforeEach("setup success response with stub", () => {
+  cy.intercept("https://next.privat24.ua/api/p24/pub/confirm/check", {
+    fixture: "confirmResponse/success.json",
+  });
+
+  // cy.intercept("https://next.privat24.ua/api/p24/pub/archive", {
+  //   fixture: "archiveResponse/success.json",
+  // });
+  // cy.intercept(
+  //   { method: "GET", url: "https://next.privat24.ua/api/p24/pub/archive" },
+  //   { fixture: "archiveResponse/success.json" }
+  // ).as("archiveInt");
+  // cy.wait("@archiveInt");
+});
+
+// a, b, e
+
+it("check error state of payment in the archive | public session", () => {
+  cy.intercept("https://next.privat24.ua/api/p24/pub/archive", {
+    fixture: "archiveResponse/error.json",
+  }).as("archiveInt");
+  basePage.open("https://next.privat24.ua/");
+  cy.wait("@archiveInt");
+  archivePage.selectArchiveMenu();
+});
+
+it.skip("check success state of payment in the archive | public session", () => {
+  cy.intercept("https://next.privat24.ua/api/p24/pub/archive", {
+    fixture: "archiveResponse/success.json",
+  });
+  basePage.open("https://next.privat24.ua/");
+  archivePage.selectArchiveMenu();
+});
+
+it.skip("Replenishment of Ukraine mobile phone number", () => {
   basePage.open("https://next.privat24.ua/mobile?lang=en");
   mobileReplenishment.typePhoneNumber("964567890");
   mobileReplenishment.clearAmount();
   basePage.typeAmount("1");
-  basePage.typeDebitCardData("4552331448138217", "0524", "111");
+  basePage.typeDebitCardData("4149499610151407", "0524", "111");
   cy.wait(3000);
-  mobileReplenishment.typeFirstNameAndLastName("TARAS", "SHEVCHENKO");
-  cy.wait(3000);
+  //   mobileReplenishment.typeFirstNameAndLastName("TARAS", "SHEVCHENKO");
+  //   cy.wait(3000);
   basePage.submitPayment();
-  mobileReplenishment.checkDebitCard("4552 **** **** 8217");
+  mobileReplenishment.checkDebitCard("4149 **** **** 1407");
   mobileReplenishment.checkDebitAmount("1\u00a0UAH");
   mobileReplenishment.checkDebitAmountAndCommission("2");
   mobileReplenishment.checkPaymentCurrency("UAH");
+  cy.contains("Pay").click();
+  // cy.get('[data-qa-node="expire"]')
+  //   .type("0524")
+  //   .get('[data-qa-node="cvv"]')
+  //   .type("111");
+  // cy.get('button[type="submit"]').should("contain.text", "Confirm");
 
   // .get('[data-qa-node="phone-number"]')
   // .type("964567890")
@@ -77,7 +118,7 @@ it("Replenishment of Ukraine mobile phone number", () => {
   // .should("have.text", "2");
 });
 
-it("Money transfer between foreign cards", () => {
+it.skip("Money transfer between foreign cards", () => {
   basePage.open("https://next.privat24.ua/money-transfer/card?lang=en");
   basePage.typeDebitCardData("4552331448138217", "0524", "111");
   transfers.typeDebitFirstNameAndLastName("Shayne", "McConnell");
