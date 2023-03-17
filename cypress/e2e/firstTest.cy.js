@@ -128,16 +128,25 @@ it.only("Money transfer between foreign cards", () => {
   transfers.typeComment("Cypress Test");
   cy.wait(3000);
   basePage.submitPayment();
-  transfers.checkDebitAndReceiverCards(
-    "4552 3314 4813 8217",
-    "5309 2330 3476 5085"
-  );
-  transfers.checkDebitAmountAndTotalAmount(
-    "500 UAH",
-    "Total to debit\u00a0620.49\u00a0UAH"
-  );
-  transfers.checkDebitCommission("120.49 UAH");
-  transfers.checkComment("Cypress Test");
+  // transfers.checkDebitAndReceiverCards(
+  //   "4552 3314 4813 8217",
+  //   "5309 2330 3476 5085"
+  // );
+  // transfers.checkDebitAmountAndTotalAmount(
+  //   "500 UAH",
+  //   "Total to debit\u00a0620.49\u00a0UAH"
+  // );
+  // transfers.checkDebitCommission("120.49 UAH");
+  // transfers.checkComment("Cypress Test");
+
+  // cy.wait(2000)
+  //   .get("form")
+  //   .toMatchImageSnapshot();
+
+  cy.wait(2000)
+    .document()
+    .toMatchImageSnapshot();
+
   // .get('[data-qa-node="numberdebitSource"]')
   // .type("4552331448138217")
   // .get('[data-qa-node="expiredebitSource"]')

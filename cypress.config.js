@@ -14,12 +14,13 @@ module.exports = defineConfig({
       "cypress/e2e/__snapshots__/*",
       "cypress/e2e/__image_snapshots__/*",
     ],
-    imageConfig: {
-      createDiffImage: true, // Should a "diff image" be created, can be disabled for performance
-      threshold: 0.01, // Amount in pixels or percentage before snapshot image is invalid
-      thresholdType: "percent", // Can be either "pixel" or "percent"
+    env: {
+      "cypress-plugin-snapshots": {
+        imageConfig: {
+          threshold: 1,
+          thresholdType: "pixel",
+        },
+      },
     },
-    name: "custom image name", // Naming resulting image file with a custom name rather than concatenating test titles
-    separator: "custom image separator", // Naming resulting image file with a custom separator rather than using the default ` #`
   },
 });
